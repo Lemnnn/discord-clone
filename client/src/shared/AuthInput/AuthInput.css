@@ -1,0 +1,27 @@
+:root {
+  --login-input-color: #0a0a0b;
+  --login-input-text-color: #ffffff;
+  --input-lable-color: rgba(255, 255, 255, 0.7);
+}
+
+.inputWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-top: 20px;
+}
+
+.inputLabel {
+  color: var(--input-lable-color);
+  font-size: 11px;
+  font-weight: bold;
+}
+
+.loginInput {
+  background-color: var(--login-input-color);
+  border: 0;
+  height: 35px;
+  border-radius: 5px;
+  padding-inline: 10px;
+  color: var(--login-input-text-color);
+}
