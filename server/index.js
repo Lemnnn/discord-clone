@@ -7,7 +7,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 mongoose.connect(
-  "mongodb+srv://Lemn:UJPefhUYXwzDoI7v@cluster.nqtzkr1.mongodb.net/discord?retryWrites=true&w=majority"
+  ""
 );
 
 app.use(cors());
