@@ -1,5 +1,8 @@
 const Dashboard = () => {
-  return <div>Dashboard</div>;
+  const userData = localStorage.getItem("data");
+  const user = JSON.parse(userData);
+
+  return <div>{user.username}</div>;
 };
 
 export default Dashboard;

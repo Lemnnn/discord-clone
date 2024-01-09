@@ -16,7 +16,8 @@ const Login = () => {
 
   const mutation = useMutation({
     mutationFn: loginUser,
-    onSuccess: () => {
+    onSuccess: (data) => {
+      localStorage.setItem("data", JSON.stringify(data.user));
       navigate("/dashboard");
     },
   });
@@ -39,7 +40,7 @@ const Login = () => {
       <div className="loginFormContainer">
         <form className="loginForm" onSubmit={handleSubmit}>
           <div className="loginFormTitleContainer">
-            <h1 className="formTitle textColor">Welcom back!</h1>
+            <h1 className="formTitle textColor">Welcome back!</h1>
             <p className="formSubTitle textColorFade">
               We&apos;re so excited to see you again!
             </p>
