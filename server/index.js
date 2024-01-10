@@ -15,9 +15,7 @@ const io = new Server(server, {
   },
 });
 
-mongoose.connect(
-  "mongodb+srv://Lemn:UJPefhUYXwzDoI7v@cluster.nqtzkr1.mongodb.net/discord?retryWrites=true&w=majority"
-);
+mongoose.connect("");
 
 app.use(cors());
 app.use(express.json());
