@@ -2,11 +2,22 @@ const express = require("express");
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 const cors = require("cors");
+const { createServer } = require("http");
+const { Server } = require("socket.io");
 
+const PORT = 3000;
 const app = express();
-const PORT = process.env.PORT || 3000;
 
-mongoose.connect("");
+const server = createServer(app);
+const io = new Server(server, {
+  cors: {
+    origin: "http://localhost:5173",
+  },
+});
+
+mongoose.connect(
+  "mongodb+srv://Lemn:UJPefhUYXwzDoI7v@cluster.nqtzkr1.mongodb.net/discord?retryWrites=true&w=majority"
+);
 
 app.use(cors());
 app.use(express.json());
@@ -62,6 +73,20 @@ app.post("/login", async (req, res) => {
     res.status(500).json({ error: "Error logging in" });
   }
 });
+
+io.on("connection", (socket) => {
+  console.log("User connected");
+
+  socket.on("sendMessage", (msg) => {
+    io.emit("sendMessage", msg);
+  });
+
+  socket.on("disconnect", () => {
+    console.log("user disconnected");
+  });
+});
+
+server.listen(3001);
 
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
