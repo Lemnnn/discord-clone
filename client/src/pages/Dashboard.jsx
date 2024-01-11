@@ -34,9 +34,11 @@ const Dashboard = () => {
 
   const handleKeyPress = (e) => {
     if (e.key === "Enter") {
-      e.preventDefault();
-      submitMessage(e);
-      setMessage("");
+      if (message) {
+        e.preventDefault();
+        submitMessage(e);
+        setMessage("");
+      }
     }
   };
 
@@ -44,23 +46,31 @@ const Dashboard = () => {
 
   return (
     <div className="body">
-      <div>
-        {messages.map((_msg) => {
-          return (
-            <div key={_msg}>
-              <p>{_msg.username}</p>
-              <div>{_msg.message}</div>
-            </div>
-          );
-        })}
+      <div className="serverSideBar"></div>
+      <div className="chatContent">
+        <div className="chatHeader">
+          <h1 className="serverName">Server Name</h1>
+        </div>
+        <div className="chatMessages">
+          {messages.map((_msg) => {
+            return (
+              <div key={_msg} className="messagesContainer">
+                <p className="messageSender">{_msg.username}</p>
+                <p className="message">{_msg.message}</p>
+              </div>
+            );
+          })}
+        </div>
+        <div className="inputContainer">
+          <input
+            className="sendMessageInput"
+            placeholder="Message..."
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
+            onKeyUp={handleKeyPress}
+          />
+        </div>
       </div>
-      <input
-        className="sendMessageInput"
-        placeholder="Message..."
-        value={message}
-        onChange={(e) => setMessage(e.target.value)}
-        onKeyUp={handleKeyPress}
-      />
     </div>
   );
 };
